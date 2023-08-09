@@ -8,6 +8,7 @@ import AllMovies from './Components/Movies and TV Shows/AllMovies';
 // import TVShows from './Components/Main/TVShows';
 import TV from './Components/Movies and TV Shows/TV'
 import Signup from './Components/Authentication/Signup/Signup'
+import Detail from './Components/Movies and TV Shows/DetailedPage/Detail'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         {/* <Route path='/nav' element={<Navbar />} /> */}
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/movies' element={<AllMovies />} />
+        <Route path='/detail/:id' element={<Detail />} />
       </Routes>
 
     </>

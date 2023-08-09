@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function TopRated() {
     const [movies, setMovies] = useState([])
@@ -52,7 +53,7 @@ function TopRated() {
                                 return (
                                     <>
                                         <li>
-                                            <div className="movie-card">
+                                            <NavLink className="movie-card">
                                                 <a href="./movie-details.html">
                                                     <figure className="card-banner">
                                                         <img
@@ -78,7 +79,7 @@ function TopRated() {
                                                         <data>{element.vote_average.toFixed(1)}</data>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </NavLink>
                                         </li>
                                     </>
                                 )

@@ -999,7 +999,19 @@ body.active {
 /*-----------------------------------*\
  * #MOVIE DETAIL
 \*-----------------------------------*/
+.movie-detail {
+  /* background: url("/src/assets/movie-detail-bg.png") no-repeat; */
+  background-size: cover;
+  background-position: center;
+  padding-top: 160px;
+  padding-bottom: var(--section-padding);
 
+}
+
+.upper {
+  z-index: 50;
+  opacity: 1;
+}
 
 .movie-detail-banner {
   position: relative;
@@ -1064,11 +1076,13 @@ body.active {
   flex-wrap: wrap;
   gap: 20px 40px;
   max-width: 460px;
-  background: var(--gunmetal-2);
+  background: rgba(2, 5, 2, 0.8);
   padding: 25px;
-  border: 1px solid var(--jet);
-  border-radius: 4px;
+  border-radius: 10px;
   margin-bottom: 30px;
+  -moz-box-shadow: 1px 2px 3px rgba(105, 99, 99, 0.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(168, 148, 148, 0.5);
+  box-shadow: 1px 5px 5px rgba(63, 60, 60, 0.5);
 }
 
 .details-actions .share ion-icon {
@@ -1126,10 +1140,6 @@ body.active {
 .download-btn ion-icon {
   font-size: 16px;
 }
-
-
-
-
 
 /*-----------------------------------*\
  * #MEDIA QUERIES
@@ -1233,6 +1243,10 @@ body.active {
 
   .detail-title {
     --fs-1: 46px;
+  }
+
+  .wrapper {
+    padding: 0px;
   }
 
 }
@@ -1766,4 +1780,40 @@ body.active {
   width: 50%;
   display: flex;
   justify-content: center;
+}
+
+
+/**
+ * casts style
+ */
+.wrapper {
+  padding: 60px;
+}
+
+.cast-wrapper {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.casts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--citrine);
+}
+
+.image--cover {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
 }

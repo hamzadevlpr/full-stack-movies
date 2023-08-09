@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Upcomming() {
     const [movies, setMovies] = useState([])
@@ -52,7 +53,7 @@ function Upcomming() {
                             movies.map((element, index) => {
                                 return (
                                     <li key={index}>
-                                        <div className="movie-card">
+                                        <Link to={`/detail/${element.id}`} className="movie-card">
                                             <a href="./movie-details.html">
                                                 <figure className="card-banner">
                                                     <img
@@ -78,7 +79,7 @@ function Upcomming() {
                                                     <data>{element.vote_average.toFixed(1)}</data>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     </li>
                                 )
                             })
