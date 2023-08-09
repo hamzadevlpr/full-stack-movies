@@ -14,14 +14,12 @@ function TV() {
     const [postsPerPage, setPostsPerPage] = useState(20);
 
     useEffect(() => {
-        fetchAlltvShows();
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
+        fetchAlltvShows()
     }, []);
 
     const fetchAlltvShows = async () => {
         try {
+            setLoading(true)
             const apiKey = "ca258fa0adb338022b74848eb9dade0a";
             const totalPages = 20;
             let alltvShows = [];
@@ -35,6 +33,8 @@ function TV() {
             setTvShow(alltvShows);
         } catch (error) {
             console.error('Error fetching TV Shows:', error);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -45,20 +45,21 @@ function TV() {
 
     return (
         <>
-            {loading ? (
-                <div className="clipLoader">
-                    <ClipLoader color='#e9e148' loading={loading} size={80} />
-                </div>
-            ) : (
-                <section className="top-rated" style={{
-                    background: `url("/src/assets/top-rated-bg.jpg") no-repeat`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    paddingBlock: 'var(--section-padding)',
-                    height: '99vh'
-                }}>
-                    <div className="container">
-                        <h2 className="h2 section-title">Popular TV Shows</h2>
+            <section className="top-rated" style={{
+                background: `url("/src/assets/top-rated-bg.jpg") no-repeat`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                paddingBlock: 'var(--section-padding)',
+                height: '99vh'
+            }}>
+                <div className="container">
+                    <h2 className="h2 section-title">Popular TV Shows</h2>
+                    {loading ? (
+                        <div className="clipLoader">
+                            <ClipLoader color='#e9e148' loading={loading} size={80} />
+                        </div>
+                    ) : (
+
                         <ul className="movies-list">
                             {currentPost.map((element, index) => (
                                 <div key={index}>
@@ -99,15 +100,11 @@ function TV() {
                                 </div>
                             ))}
                         </ul>
-                    </div>
-                    <Pagination
-                        totalPosts={tvShow.length}
-                        postsPerPage={postsPerPage}
-                        setCurrentPage={setCurrentPage}
-                        currentPage={currentPage}
-                    />
-                </section>
-            )}
+
+                    )}
+                </div>
+
+            </section>
         </>
     );
 }

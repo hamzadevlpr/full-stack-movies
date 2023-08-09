@@ -33,22 +33,19 @@ function AllMovies() {
 
     return (
         <>
-
-            {loading ? (
-                <div className="clipLoader">
-                    <ClipLoader color='#e9e148' loading={loading} size={80} />
-                </div>
-            ) : (
-
-                <section className="top-rated" style={{
-                    background: `url("/src/assets/top-rated-bg.jpg") no-repeat`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    paddingBlock: 'var(--section-padding)',
-                }}>
-                    <h2 className="h2 section-title ">Popular Movies</h2>
+            <section className="top-rated" style={{
+                background: `url("/src/assets/top-rated-bg.jpg") no-repeat`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                paddingBlock: 'var(--section-padding)',
+            }}>
+                <h2 className="h2 section-title ">Popular Movies</h2>
+                {loading ? (
+                    <div className="clipLoader">
+                        <ClipLoader color='#e9e148' loading={loading} size={80} />
+                    </div>
+                ) : (
                     <div className="container">
-
                         <ul className="movies-list">
                             {movies.map((moviesList, index) => (
                                 <div key={index}>
@@ -90,8 +87,8 @@ function AllMovies() {
                             ))}
                         </ul>
                     </div>
-                </section>
-            )}
+                )}
+            </section>
         </>
     );
 }

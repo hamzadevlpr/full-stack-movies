@@ -561,24 +561,9 @@ body.active {
 
 
 
-
-
 /*-----------------------------------*\
  * #HERO
 \*-----------------------------------*/
-
-.hero {
-  background: url("../images/hero-bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 750px;
-  height: 100vh;
-  max-height: 1000px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-block: var(--section-padding);
-}
 
 .hero-content {
   margin-top: 60px;
@@ -606,13 +591,6 @@ body.active {
 /*-----------------------------------*\
  * #UPCOMING
 \*-----------------------------------*/
-
-.upcoming {
-  background: url("../images/upcoming-bg.png") no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-block: var(--section-padding);
-}
 
 .upcoming .flex-wrapper {
   margin-bottom: 50px;
@@ -656,13 +634,6 @@ body.active {
 /*-----------------------------------*\
  * #SERVICE
 \*-----------------------------------*/
-
-.service {
-  background: url("../images/service-bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-block: var(--section-padding);
-}
 
 .service-banner {
   position: relative;
@@ -771,14 +742,6 @@ body.active {
 /*-----------------------------------*\
  * #TOP RATED
 \*-----------------------------------*/
-
-.top-rated {
-  background: url("../images/top-rated-bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-block: var(--section-padding);
-}
-
 .top-rated .section-title {
   margin-bottom: 50px;
 }
@@ -832,12 +795,6 @@ body.active {
  * #TV SEREIS
 \*-----------------------------------*/
 
-.tv-series {
-  background: url("../images/tv-series-bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-block: var(--section-padding);
-}
 
 .tv-series .section-title {
   margin-bottom: 50px;
@@ -852,10 +809,6 @@ body.active {
 \*-----------------------------------*/
 
 .cta {
-  background: url("../assets/tv-series-bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  text-align: center;
   padding-block: 50px;
 }
 
@@ -915,9 +868,6 @@ body.active {
 \*-----------------------------------*/
 
 .footer-top {
-  background: url("../images/footer-bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
   padding-block: 80px 50px;
 }
 
@@ -1050,13 +1000,6 @@ body.active {
  * #MOVIE DETAIL
 \*-----------------------------------*/
 
-.movie-detail {
-  background: url("../images/movie-detail-bg.png") no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-top: 160px;
-  padding-bottom: var(--section-padding);
-}
 
 .movie-detail-banner {
   position: relative;

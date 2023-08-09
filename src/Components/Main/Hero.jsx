@@ -13,7 +13,6 @@ function Main() {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        // paddingBlock: sectionPadding,
     };
     return (
         <>
