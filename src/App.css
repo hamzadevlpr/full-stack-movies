@@ -179,6 +179,7 @@ body.active {
 
 .section-title {
   text-align: center;
+  margin: 50px 0;
 }
 
 /**
@@ -299,6 +300,14 @@ body.active {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+}
+
+.clipLoader {
+  display: flex;
+  justify-content: center;
+  height: 50rem;
+  align-items: center;
 }
 
 .movie-card .card-banner {
@@ -384,6 +393,15 @@ body.active {
   font-size: 13px;
   --ionicon-stroke-width: 50px;
   color: var(--citrine);
+}
+
+.movie-card .badge {
+  background-color: var(--citrine);
+  position: absolute;
+  color: white;
+  top: 8px;
+  left: 8px;
+  border: none;
 }
 
 /**
@@ -834,7 +852,7 @@ body.active {
 \*-----------------------------------*/
 
 .cta {
-  background: url("../images/cta-bg.jpg") no-repeat;
+  background: url("../assets/tv-series-bg.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   text-align: center;
@@ -1799,4 +1817,10 @@ body.active {
     transform: rotate(-0.25turn);
   }
 
+}
+
+.watch {
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }

@@ -1,6 +1,25 @@
+import axios from 'axios';
 import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function Upcomming() {
+    const [movies, setMovies] = useState([])
+
+    const fetchTopRatedMovies = async () => {
+        try {
+            const apiKey = "ca258fa0adb338022b74848eb9dade0a";
+            const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&api_key=${apiKey}`;
+            const response = await axios.get(url);
+            const topRatedMovies = response.data.results.slice(0, 4);
+            setMovies(topRatedMovies)
+        } catch (error) {
+            console.error('Error fetching movies:', error);
+        }
+    };
+    useEffect(() => {
+        fetchTopRatedMovies();
+    }, [])
     return (
         <>
             {/*  - #UPCOMING*/}
@@ -28,127 +47,42 @@ function Upcomming() {
                             </li>
                         </ul>
                     </div>
-                    <ul className="movies-list  has-scrollbar">
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src='/src/assets/upcoming-bg.png'
-                                            alt="The Northman movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">The Northman</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">HD</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT137M">137 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>8.5</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/upcoming-2.png"
-                                            alt="Doctor Strange in the Multiverse of Madness movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">
-                                            Doctor Strange in the Multiverse of Madness
-                                        </h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">4K</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT126M">126 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>NR</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/upcoming-3.png"
-                                            alt="Memory movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">Memory</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">2K</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="">N/A</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>NR</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/upcoming-4.png"
-                                            alt="The Unbearable Weight of Massive Talent movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">
-                                            The Unbearable Weight of Massive Talent
-                                        </h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">HD</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT107M">107 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>NR</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                    <ul className="movies-list has-scrollbar">
+                        {
+                            movies.map((element, index) => {
+                                return (
+                                    <li key={index}>
+                                        <div className="movie-card">
+                                            <a href="./movie-details.html">
+                                                <figure className="card-banner">
+                                                    <img
+                                                        src={`https://image.tmdb.org/t/p/w500/${element.poster_path}`}
+                                                        alt={element.title}
+                                                    />
+                                                </figure>
+                                            </a>
+                                            <div className="title-wrapper">
+                                                <a href="./movie-details.html">
+                                                    <h3 className="card-title">{element.title}</h3>
+                                                </a>
+                                                <time dateTime={2022}>{element.release_date.slice(0, 4)}</time>
+                                            </div>
+                                            <div className="card-meta">
+                                                <div className="badge badge-outline">{element.original_language.toUpperCase()}</div>
+                                                <div className="duration">
+                                                    <ion-icon name="time-outline" />
+                                                    <time dateTime="PT137M">137 min</time>
+                                                </div>
+                                                <div className="rating">
+                                                    <ion-icon name="star" />
+                                                    <data>{element.vote_average.toFixed(1)}</data>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
             </section>

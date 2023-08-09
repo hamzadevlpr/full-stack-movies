@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Pagination from '../Pagination';
 import { ClipLoader } from 'react-spinners';
 
 
@@ -10,40 +9,27 @@ function AllMovies() {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(20);
 
     useEffect(() => {
         fetchAllMovies();
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
     }, []);
 
     const fetchAllMovies = async () => {
         try {
+            setLoading(true)
             const apiKey = "ca258fa0adb338022b74848eb9dade0a";
-            const totalPages = 20;
             let allMovies = [];
-
-            for (let page = 1; page <= totalPages; page++) {
-                const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&api_key=${apiKey}&page=${page}`;
-                const response = await axios.get(url);
-                allMovies = [...allMovies, ...response.data.results];
-            }
+            const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&api_key=${apiKey}&page=100`;
+            const response = await axios.get(url);
+            allMovies = [...allMovies, ...response.data.results];
 
             setMovies(allMovies);
         } catch (error) {
             console.error('Error fetching movies:', error);
+        } finally {
+            setLoading(false)
         }
     };
-    const handleChange = (event, value) => {
-        setPage(value);
-    };
-
-    const lastPageIndex = currentPage * postsPerPage;
-    const firstPostIndex = lastPageIndex - postsPerPage;
-    const currentPost = movies.slice(firstPostIndex, lastPageIndex);
 
     return (
         <>
@@ -59,13 +45,12 @@ function AllMovies() {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     paddingBlock: 'var(--section-padding)',
-                    height: '99vh'
                 }}>
-                    <h2 className="h2 section-title">Popular Movies</h2>
+                    <h2 className="h2 section-title ">Popular Movies</h2>
                     <div className="container">
 
                         <ul className="movies-list">
-                            {currentPost.map((moviesList, index) => (
+                            {movies.map((moviesList, index) => (
                                 <div key={index}>
                                     <li>
                                         <div className="movie-card">
@@ -105,12 +90,6 @@ function AllMovies() {
                             ))}
                         </ul>
                     </div>
-                    <Pagination
-                        totalPosts={movies.length}
-                        postsPerPage={postsPerPage}
-                        setCurrentPage={setCurrentPage}
-                        currentPage={currentPage}
-                    />
                 </section>
             )}
         </>

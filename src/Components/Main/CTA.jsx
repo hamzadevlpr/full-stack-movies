@@ -1,10 +1,16 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
+import cta from '/src/assets/cta-bg.jpg';
 
 function CTA() {
+    const backgroundStyle = {
+        backgroundImage: `url(${cta})`
+    };
     return (
         <>
             {/* - #CTA */}
-            <section className="cta">
+            <section className="cta" style={backgroundStyle}>
+
                 <div className="container">
                     <div className="title-wrapper">
                         <h2 className="cta-title">Trial start first 30 days.</h2>
@@ -20,9 +26,9 @@ function CTA() {
                             placeholder="Enter your email"
                             className="email-field"
                         />
-                        <button type="submit" className="cta-form-btn">
+                        <NavLink type="submit" className="cta-form-btn">
                             Get started
-                        </button>
+                        </NavLink>
                     </form>
                 </div>
             </section>

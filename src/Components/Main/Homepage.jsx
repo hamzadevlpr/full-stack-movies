@@ -7,37 +7,72 @@ import TopRated from './TopRated'
 import Hero from './Hero'
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar/Navbar'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { ClipLoader } from 'react-spinners';
+
 
 function Main() {
-    const goTopBtn = document.querySelector("[data-go-top]");
+    const [loading, setLoading] = useState(true);
 
-    window.addEventListener("scroll", function () {
+    useEffect(() => {
+        const goTopBtn = document.querySelector("[data-go-top]");
 
-        window.scrollY >= 500 ? goTopBtn.classList.add("active") : goTopBtn.classList.remove("active");
+        const handleScroll = () => {
+            if (window.scrollY >= 500) {
+                goTopBtn.classList.add("active");
+            } else {
+                goTopBtn.classList.remove("active");
+            }
+        };
 
-    });
+        window.addEventListener("scroll", handleScroll);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        // Simulating loading state using setInterval
+        const interval = setInterval(() => {
+            setLoading(false);
+        }, 1000);
+
+        // Clean up the interval when the component unmounts
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
     return (
         <>
             {/* <Navbar /> */}
+            {loading ? (
+                <div className="clipLoader">
+                    <ClipLoader color='#e9e148' loading={loading} size={80} />
+                </div>
+            ) : (
+                <main>
+                    <article>
 
-            <main>
-                <article>
+                        <Hero />
 
-                    <Hero />
+                        <Upcomming />
 
-                    <Upcomming />
+                        <Services />
 
-                    <Services />
+                        <TopRated />
 
-                    <TopRated />
-
-                    <TVShows />
+                        <TVShows />
 
 
-                    <CTA />
+                        <CTA />
 
-                </article>
-            </main>
+                    </article>
+                </main>
+            )}
             <Footer />
 
 
@@ -52,4 +87,4 @@ function Main() {
     )
 }
 
-export default Main
+export default Main;

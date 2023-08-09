@@ -1,10 +1,29 @@
-import React from 'react'
+
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function TopRated() {
+    const [movies, setMovies] = useState([])
+
+    const fetchTopRatedMovies = async () => {
+        try {
+            const apiKey = "ca258fa0adb338022b74848eb9dade0a";
+            const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&api_key=${apiKey}`;
+            const response = await axios.get(url);
+            const topRatedMovies = response.data.results.slice(0, 8);
+            setMovies(topRatedMovies)
+        } catch (error) {
+            console.error('Error fetching movies:', error);
+        }
+    };
+    useEffect(() => {
+        fetchTopRatedMovies();
+    }, [])
     return (
         <>
             {/* - #TOP RATED */}
-            <section className="top-rated" style={{ 
+            <section className="top-rated" style={{
                 background: `url("/src/assets/top-rated-bg.jpg") no-repeat`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -28,238 +47,43 @@ function TopRated() {
                         </li>
                     </ul>
                     <ul className="movies-list">
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-1.png"
-                                            alt="Sonic the Hedgehog 2 movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">Sonic the Hedgehog 2</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">2K</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT122M">122 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>7.8</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-2.png"
-                                            alt="Morbius movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">Morbius</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">HD</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT104M">104 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>5.9</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-3.png"
-                                            alt="The Adam Project movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">The Adam Project</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">4K</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT106M">106 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>7.0</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-4.png"
-                                            alt="Free Guy movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">Free Guy</h3>
-                                    </a>
-                                    <time dateTime={2021}>2021</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">4K</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT115M">115 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>7.7</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-5.png"
-                                            alt="The Batman movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">The Batman</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">4K</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT176M">176 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>7.9</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-6.png"
-                                            alt="Uncharted movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">Uncharted</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">HD</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT116M">116 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>7.0</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-7.png"
-                                            alt="Death on the Nile movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">Death on the Nile</h3>
-                                    </a>
-                                    <time dateTime={2022}>2022</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">2K</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT127M">127 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>6.5</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="movie-card">
-                                <a href="./movie-details.html">
-                                    <figure className="card-banner">
-                                        <img
-                                            src="./assets/images/movie-8.png"
-                                            alt="The King's Man movie poster"
-                                        />
-                                    </figure>
-                                </a>
-                                <div className="title-wrapper">
-                                    <a href="./movie-details.html">
-                                        <h3 className="card-title">The King's Man</h3>
-                                    </a>
-                                    <time dateTime={2021}>2021</time>
-                                </div>
-                                <div className="card-meta">
-                                    <div className="badge badge-outline">HD</div>
-                                    <div className="duration">
-                                        <ion-icon name="time-outline" />
-                                        <time dateTime="PT131M">131 min</time>
-                                    </div>
-                                    <div className="rating">
-                                        <ion-icon name="star" />
-                                        <data>7.0</data>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        {
+                            movies.map((element, index) => {
+                                return (
+                                    <>
+                                        <li>
+                                            <div className="movie-card">
+                                                <a href="./movie-details.html">
+                                                    <figure className="card-banner">
+                                                        <img
+                                                            src={`https://image.tmdb.org/t/p/w500/${element.poster_path}`}
+                                                            alt={element.title}
+                                                        />
+                                                    </figure>
+                                                </a>
+                                                <div className="title-wrapper">
+                                                    <a href="./movie-details.html">
+                                                        <h3 className="card-title">{element.title}</h3>
+                                                    </a>
+                                                    <time dateTime={element.release_date.slice(0, 4)}>{element.release_date.slice(0, 4)}</time>
+                                                </div>
+                                                <div className="card-meta">
+                                                    <div className="badge badge-outline">{element.original_language.toUpperCase()}</div>
+                                                    <div className="duration">
+                                                        <ion-icon name="time-outline" />
+                                                        <time dateTime="PT122M">122 min</time>
+                                                    </div>
+                                                    <div className="rating">
+                                                        <ion-icon name="star" />
+                                                        <data>{element.vote_average.toFixed(1)}</data>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
             </section>

@@ -57,7 +57,7 @@ function Footer() {
                 <div className="footer-bottom">
                     <div className="container">
                         <p className="copyright">
-                            © {year} <a href="https://github.com/hamzadvlpr1" target='_blank'> hamzadvlpr1</a>. All Rights Reserved
+                            © {year} <a href="https://github.com/hamzadvlpr1" target='_blank'> @ hamzadvlpr1</a>. All Rights Reserved
                         </p>
                         <img
                             src="src/assets/footer-bottom-img.png"

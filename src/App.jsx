@@ -11,7 +11,7 @@ import Signup from './Components/Authentication/Signup/Signup'
 
 
 function App() {
-  console.clear()
+  // console.clear()
   return (
     <>
       <Navbar />

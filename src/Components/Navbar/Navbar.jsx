@@ -1,12 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '/src/assets/logo.svg';
 import { Link, NavLink } from 'react-router-dom';
-import React from 'react'
-
-
 
 function Navbar() {
-
 
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isHeaderActive, setIsHeaderActive] = useState(false);
@@ -44,8 +40,6 @@ function Navbar() {
                     <NavLink className="search-btn">
                         <ion-icon name="search-outline"></ion-icon>
                     </NavLink>
-
-
                     <NavLink to={'/signup'} className="btn btn-primary">Sign in</NavLink>
                 </div>
 

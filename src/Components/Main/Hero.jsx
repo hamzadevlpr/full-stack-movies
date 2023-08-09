@@ -1,5 +1,6 @@
 import React from 'react'
 import heroBgImage from '/src/assets/hero-bg.jpg'
+import { NavLink } from 'react-router-dom';
 
 function Main() {
     const heroStyles = {
@@ -47,10 +48,10 @@ function Main() {
                                 </div>
                             </div>
                         </div>
-                        <button className="btn btn-primary">
+                        <NavLink className="btn btn-primary watch">
                             <ion-icon name="play" />
                             <span>Watch now</span>
-                        </button>
+                        </NavLink>
                     </div>
                 </div>
             </section>
