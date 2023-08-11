@@ -9,10 +9,12 @@ import AllMovies from './Components/Movies and TV Shows/AllMovies';
 import TV from './Components/Movies and TV Shows/TV'
 import Signup from './Components/Authentication/Signup/Signup'
 import Detail from './Components/Movies and TV Shows/DetailedPage/Detail'
+import TVDetail from './Components/Movies and TV Shows/DetailedPage/TVDetail'
+import Generes from './Components/Movies and TV Shows/Generes'
+import AutocompleteSearch from './Components/Movies and TV Shows/AutocompleteSearch'
 
 
 function App() {
-  // console.clear()
   return (
     <>
       <Navbar />
@@ -24,7 +26,10 @@ function App() {
         {/* <Route path='/nav' element={<Navbar />} /> */}
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/movies' element={<AllMovies />} />
-        <Route path='/detail/:id' element={<Detail />} />
+        <Route path='/search' element={<AutocompleteSearch />} />
+        <Route path='/genre' element={<Generes />} />
+        <Route path='/movie/:id' element={<Detail />} />
+        <Route path='/tvshow/:id' element={<TVDetail />} />
       </Routes>
 
     </>

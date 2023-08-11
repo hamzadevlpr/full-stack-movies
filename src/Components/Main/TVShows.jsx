@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function TVShows() {
     const [tvShows, setTvShows] = useState([])
@@ -42,7 +43,7 @@ function TVShows() {
                             tvShows.map((element, index) => {
                                 return (
                                     <li key={index}>
-                                        <div className="movie-card">
+                                        <NavLink to={`/detail/${element.id}`} className="movie-card">
                                             <a href="./movie-details.html">
                                                 <figure className="card-banner">
                                                     <img
@@ -68,7 +69,7 @@ function TVShows() {
                                                     <data>{element.vote_average.toFixed(1)}</data>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </NavLink>
                                     </li>
                                 )
                             })

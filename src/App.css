@@ -99,17 +99,11 @@ a {
 a,
 img,
 span,
-input,
 button,
 ion-icon {
   display: block;
 }
 
-input {
-  font: inherit;
-  width: 100%;
-  border: none;
-}
 
 select,
 button {
@@ -179,7 +173,7 @@ body.active {
 
 .section-title {
   text-align: center;
-  margin: 50px 0;
+  margin: 30px 0 0 0;
 }
 
 /**
@@ -436,7 +430,17 @@ body.active {
 
 
 
-
+/*-----------------------------------*\
+ * #season-badge
+\*-----------------------------------*/
+.season-badge {
+  color: white;
+  border: 2px solid var(--citrine);
+  font-size: var(--fs-10);
+  padding: 3px 10px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
 
 /*-----------------------------------*\
  * #HEADER
@@ -1069,6 +1073,48 @@ body.active {
   margin-bottom: 40px;
 }
 
+.tv-details-actions {
+  background: rgba(2, 5, 2, 0.4) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-banner-botton {
+  display: flex;
+  justify-content: space-evenly;
+  background: rgba(2, 5, 2, 0.8);
+  border-radius: none !important;
+}
+
+.movie-banner-botton .box {
+  height: 60px;
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  /* border: 1px solid #fff; */
+}
+
+.movie-banner-botton .box:hover {
+  background-color: var(--citrine);
+}
+
+.movie-banner-botton .box .share:hover {
+  color: black;
+  font-weight: 600;
+}
+
+.movie-banner-botton .box .share {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 15px;
+}
+
 .details-actions {
   display: flex;
   justify-content: center;
@@ -1079,9 +1125,7 @@ body.active {
   padding: 25px;
   border-radius: 10px;
   margin-bottom: 30px;
-  -moz-box-shadow: 1px 2px 3px rgba(105, 99, 99, 0.5);
-  -webkit-box-shadow: 1px 2px 3px rgba(168, 148, 148, 0.5);
-  box-shadow: 1px 5px 5px rgba(63, 60, 60, 0.5);
+  box-shadow: 1px 5px 5px rgba(29, 28, 28, 0.5);
 }
 
 .details-actions .share ion-icon {
@@ -1108,6 +1152,7 @@ body.active {
 .details-actions .text {
   font-size: var(--fs-11);
   color: var(--gainsboro);
+  text-align: center;
 }
 
 .details-actions .btn-primary {
@@ -1163,7 +1208,6 @@ body.active {
     --fs-1: 42px;
 
   }
-
 
 
   /**
@@ -1305,24 +1349,8 @@ body.active {
     display: none;
   }
 
-  .search-btn {
-    position: relative;
-    color: var(--white);
-  }
 
-  .search-btn ion-icon {
-    --ionicon-stroke-width: 80px;
-  }
 
-  .search-btn::after {
-    content: "";
-    position: absolute;
-    top: 1px;
-    right: -20px;
-    background: hsla(0, 0%, 100%, 0.1);
-    width: 2px;
-    height: 14px;
-  }
 
   .lang-wrapper {
     display: flex;
@@ -1781,6 +1809,16 @@ body.active {
   justify-content: center;
 }
 
+.imdb-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.imdb-rating span {
+  font-weight: 600;
+}
 
 /**
  * casts style
@@ -1815,4 +1853,123 @@ body.active {
   height: 60px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.remaining-cast {
+  position: relative;
+  flex-grow: 1;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.remaining-cast-circle {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 24px;
+  z-index: 1;
+}
+
+
+/**
+ * Streaming Dropdowns
+ */
+.streaming {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.title-wrapper ion-icon {
+  font-size: 25px;
+  color: #fff;
+}
+
+/* Add this CSS to your component's CSS or a separate stylesheet */
+
+/* Dropdown styles */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.text {
+  margin-left: 8px;
+}
+
+/* Dropdown content */
+.dropdown-content {
+  /* cursor: pointer; */
+  display: none;
+  position: absolute;
+  background-color: var(--citrine);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  /* padding: 10px; */
+  z-index: 1;
+}
+
+.dropdown.open .dropdown-content {
+  display: block;
+  width: auto;
+}
+
+/* Style the dropdown options (links) */
+.dropdown-content a {
+  /* display: block; */
+  padding: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 10px;
+
+}
+
+.dropdown-content a:hover {
+  background-color: var(--citrine);
+}
+
+ion-icon.down {
+  font-size: 8px !important;
+}
+
+.ssss img {
+  width: 100px;
+  height: 30px;
+  object-fit: contain;
+}
+
+/* // Genre Boxes */
+
+.cat {
+  color: white;
+}
+
+.genere-box {
+  margin: 20px 10px;
+  background: linear-gradient(to left bottom, rgb(213, 235, 117), var(--citrine), rgb(213, 235, 117));
+  height: 50px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--eerie-black);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
 }

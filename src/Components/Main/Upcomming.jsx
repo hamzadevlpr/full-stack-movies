@@ -53,7 +53,7 @@ function Upcomming() {
                             movies.map((element, index) => {
                                 return (
                                     <li key={index}>
-                                        <Link to={`/detail/${element.id}`} className="movie-card">
+                                        <Link to={`/movie/${element.id}`} className="movie-card">
                                             <a href="./movie-details.html">
                                                 <figure className="card-banner">
                                                     <img

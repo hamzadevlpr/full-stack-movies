@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
+import Generes from './Generes';
+import AutocompleteSearch from './AutocompleteSearch';
 
 
 
@@ -34,13 +36,14 @@ function AllMovies() {
 
     return (
         <>
+
             <section className="top-rated" style={{
                 background: `url("/src/assets/top-rated-bg.jpg") no-repeat`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 paddingBlock: 'var(--section-padding)',
             }}>
-                <h2 className="h2 section-title ">Popular Movies</h2>
+                <h2 className="h2 section-title">Popular Movies</h2>
                 {
                     loading ? (
                         <div className="clipLoader">
@@ -48,11 +51,13 @@ function AllMovies() {
                         </div>
                     ) : (
                         <div className="container">
+                            <AutocompleteSearch />
+                            <Generes />
                             <ul className="movies-list">
                                 {movies.map((moviesList, index) => (
                                     <div key={index}>
                                         <li>
-                                            <Link to={`/detail/${moviesList.id}`} className="movie-card">
+                                            <Link to={`/movie/${moviesList.id}`} className="movie-card">
                                                 <a>
                                                     <figure className="card-banner">
                                                         <div className="badge">

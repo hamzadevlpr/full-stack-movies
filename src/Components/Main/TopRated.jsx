@@ -53,7 +53,7 @@ function TopRated() {
                                 return (
                                     <>
                                         <li>
-                                            <NavLink className="movie-card">
+                                            <NavLink to={`/detail/${element.id}`} className="movie-card">
                                                 <a href="./movie-details.html">
                                                     <figure className="card-banner">
                                                         <img

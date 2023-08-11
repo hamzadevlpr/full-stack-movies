@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pagination from '../Pagination';
 import { ClipLoader } from 'react-spinners';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -9,9 +10,6 @@ function TV() {
 
     const [tvShow, setTvShow] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(20);
 
     useEffect(() => {
         fetchAlltvShows()
@@ -21,27 +19,17 @@ function TV() {
         try {
             setLoading(true)
             const apiKey = "ca258fa0adb338022b74848eb9dade0a";
-            const totalPages = 20;
-            let alltvShows = [];
 
-            for (let page = 1; page <= totalPages; page++) {
-                const url = `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${apiKey}&page=${page}`;
-                const response = await axios.get(url);
-                alltvShows = [...alltvShows, ...response.data.results];
-            }
-
-            setTvShow(alltvShows);
+            const url = `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&sort_by=popularity.desc&api_key=${apiKey}`;
+            const response = await axios.get(url);
+            // console.log(response)
+            setTvShow(response.data.results);
         } catch (error) {
             console.error('Error fetching TV Shows:', error);
         } finally {
             setLoading(false)
         }
     };
-
-
-    const lastPageIndex = currentPage * postsPerPage;
-    const firstPostIndex = lastPageIndex - postsPerPage;
-    const currentPost = tvShow.slice(firstPostIndex, lastPageIndex);
 
     return (
         <>
@@ -50,7 +38,7 @@ function TV() {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 paddingBlock: 'var(--section-padding)',
-                height: '99vh'
+                height: '100%'
             }}>
                 <div className="container">
                     <h2 className="h2 section-title">Popular TV Shows</h2>
@@ -61,10 +49,10 @@ function TV() {
                     ) : (
 
                         <ul className="movies-list">
-                            {currentPost.map((element, index) => (
+                            {tvShow.map((element, index) => (
                                 <div key={index}>
                                     <li>
-                                        <div className="movie-card">
+                                        <NavLink to={`/tvshow/${element.id}`} className="movie-card">
                                             <a>
                                                 <figure className="card-banner">
                                                     <div className="badge">
@@ -72,16 +60,16 @@ function TV() {
                                                     </div>
                                                     <img
                                                         src={`https://image.tmdb.org/t/p/w500/${element.poster_path}`}
-                                                        alt={element.title}
+                                                        alt={element.name}
                                                     />
                                                 </figure>
                                             </a>
                                             <div className="title-wrapper">
                                                 <a>
-                                                    <h3 className="card-title">{element.title}</h3>
+                                                    <h3 className="card-title">{element.name}</h3>
                                                 </a>
-                                                {element.release_date && (
-                                                    <time dateTime={2022}>{element.release_date.slice(0, 4)}</time>
+                                                {element.first_air_date && (
+                                                    <time dateTime={2022}>{element.first_air_date.slice(0, 4)}</time>
                                                 )}
                                             </div>
                                             <div className="card-meta">
@@ -95,7 +83,7 @@ function TV() {
                                                     <data>{element.vote_average}</data>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </NavLink>
                                     </li>
                                 </div>
                             ))}
